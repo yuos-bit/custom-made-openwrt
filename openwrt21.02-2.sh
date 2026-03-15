@@ -56,7 +56,13 @@ echo "DISTRIB_DESCRIPTION='yuos Build @ ${BUILD_STRING}'" >> package/base-files/
 sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
 echo "luciversion = '${BUILD_STRING}'" >> feeds/luci/modules/luci-base/luasrc/version.lua
 
+# 最新主题
+find feeds/luci -type d -name "luci-theme-bootstrap" -exec rm -rf {} +
+rm -rf package/yuos/luci-theme-bootstrap
+cp -rf $GITHUB_WORKSPACE/patchs/5.4/themes $GITHUB_WORKSPACE/package/themes
+
 #升级golang
 rm -rf feeds/packages/lang/golang
 find . -type d -name "golang" -prune -exec rm -rf {} \;
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+
