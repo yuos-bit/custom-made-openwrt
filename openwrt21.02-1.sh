@@ -43,11 +43,11 @@ cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/board.d/01_leds $GITHUB_WORKSPACE/openwr
 cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/image/mt7621.mk $GITHUB_WORKSPACE/openwrt/target/linux/ramips/image/mt7621.mk
 
 # MT76X8
-cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/dts/* $GITHUB_WORKSPACE/openwrt/target/linux/ramips/dts/
-cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/mt76x8.mk $GITHUB_WORKSPACE/openwrt/target/linux/ramips/image/mt76x8.mk
-cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/02_network $GITHUB_WORKSPACE/openwrt/target/linux/ramips/mt76x8/base-files/etc/board.d/02_network
+# cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/dts/* $GITHUB_WORKSPACE/openwrt/target/linux/ramips/dts/
+# cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/mt76x8.mk $GITHUB_WORKSPACE/openwrt/target/linux/ramips/image/mt76x8.mk
+# cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/02_network $GITHUB_WORKSPACE/openwrt/target/linux/ramips/mt76x8/base-files/etc/board.d/02_network
 #备用方案
-sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-21.02|https://github.com/coolsnowwolf/luci.git;master|' feeds.conf.default
+#sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-21.02|https://github.com/coolsnowwolf/luci.git;master|' feeds.conf.default
 sed -i 's/git.openwrt.org\feed\/packages.git;openwrt-21.02/github.com\/coolsnowwolf\/packages.git;master/g' feeds.conf.default
 
 # 增加软件包
