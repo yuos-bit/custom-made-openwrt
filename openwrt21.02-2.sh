@@ -59,7 +59,7 @@ echo "luciversion = '${BUILD_STRING}'" >> feeds/luci/modules/luci-base/luasrc/ve
 # 最新主题
 find feeds/luci -type d -name "luci-theme-bootstrap" -exec rm -rf {} +
 rm -rf package/yuos/luci-theme-bootstrap
-cp -rf $GITHUB_WORKSPACE/patchs/5.4/themes $GITHUB_WORKSPACE/package/themes
+cp -rf $GITHUB_WORKSPACE/patchs/5.4/themes/* $GITHUB_WORKSPACE/package/themes
 
 #升级golang
 rm -rf feeds/packages/lang/golang
