@@ -61,3 +61,12 @@ rm -rf feeds/packages/lang/golang
 find . -type d -name "golang" -prune -exec rm -rf {} \;
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
+
+# 补充语言包
+# 1. 浅克隆 luci 仓库
+git clone --depth=1 -b openwrt-21.02 https://github.com/openwrt/luci.git /tmp/luci
+# 2. 只复制不存在的文件
+rsync -av --ignore-existing /tmp/luci/applications/ feeds/luci/applications/
+# 3. 删除临时目录
+rm -rf /tmp/luci
+
