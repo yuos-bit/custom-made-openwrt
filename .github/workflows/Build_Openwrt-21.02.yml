@@ -112,6 +112,12 @@ jobs:
         cd openwrt
         ./scripts/feeds update -a
 
+    - name: 替换golang
+      run: |
+        rm -rf feeds/packages/lang/golang
+        find . -type d -name "golang" -prune -exec rm -rf {} \;
+        git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+
     - name: 安装插件
       run: |
         cd openwrt
