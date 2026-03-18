@@ -182,7 +182,42 @@ jobs:
           echo "重命名: $file -> $new_name"
           mv "$file" "$new_name"
         done
-    
+
+    - name: 转换x86为vmdk虚拟机磁盘
+      if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86'
+      run: |
+        cd $FIRMWARE
+          
+        echo "查找所有img.gz镜像..."
+        FILES=$(ls *.img.gz 2>/dev/null)
+          
+        if [ -z "$FILES" ]; then
+          echo "未找到img.gz，尝试img..."
+          FILES=$(ls *.img 2>/dev/null)
+        fi
+          
+        if [ -z "$FILES" ]; then
+          echo "未找到任何镜像，跳过"
+          exit 0
+        fi
+          
+        for file in $FILES; do
+          echo "处理文件: $file"
+          
+          if [[ "$file" == *.gz ]]; then
+            gunzip -f "$file"
+            file="${file%.gz}"
+          fi
+          
+          NAME=$(basename "$file" .img)
+          
+          echo "转换为 vmdk: $NAME.vmdk"
+          qemu-img convert -f raw -O vmdk "$file" "${NAME}.vmdk"
+        done
+          
+        echo "转换完成:"
+        ls -lh
+
     - name: 打包固件
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && github.event.inputs.UPLOAD_FIRMWARE == 'true' && !cancelled()
