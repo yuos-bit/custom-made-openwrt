@@ -112,12 +112,6 @@ jobs:
         cd openwrt
         ./scripts/feeds update -a
 
-    - name: 替换golang
-      run: |
-        rm -rf feeds/packages/lang/golang
-        find . -type d -name "golang" -prune -exec rm -rf {} \;
-        git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
-
     - name: 安装插件
       run: |
         cd openwrt
@@ -189,41 +183,20 @@ jobs:
           mv "$file" "$new_name"
         done
 
-    - name: 转换x86为vmdk虚拟机磁盘
-      if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86'
+    - name: 转换X86镜像为VMDK
+      if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86' && !cancelled()
       run: |
         cd $FIRMWARE
-          
-        echo "查找所有img.gz镜像..."
-        FILES=$(ls *.img.gz 2>/dev/null)
-          
-        if [ -z "$FILES" ]; then
-          echo "未找到img.gz，尝试img..."
-          FILES=$(ls *.img 2>/dev/null)
-        fi
-          
-        if [ -z "$FILES" ]; then
-          echo "未找到任何镜像，跳过"
-          exit 0
-        fi
-          
-        for file in $FILES; do
-          echo "处理文件: $file"
-          
-          if [[ "$file" == *.gz ]]; then
-            gunzip -f "$file"
-            file="${file%.gz}"
-          fi
-          
-          NAME=$(basename "$file" .img)
-          
-          echo "转换为 vmdk: $NAME.vmdk"
-          qemu-img convert -f raw -O vmdk "$file" "${NAME}.vmdk"
+        for gz in *generic-ext4-combined.img.gz; do
+          [ -f "$gz" ] && gunzip -f "$gz"
         done
-          
-        echo "转换完成:"
-        ls -lh
-
+        for img in *generic-ext4-combined*.img; do
+          [ -f "$img" ] || continue
+          vmdk="${img%.img}.vmdk"
+          qemu-img convert -f raw -O vmdk "$img" "$vmdk"
+        done
+    
+    
     - name: 打包固件
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && github.event.inputs.UPLOAD_FIRMWARE == 'true' && !cancelled()
