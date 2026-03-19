@@ -193,9 +193,8 @@ jobs:
         for img in *generic-ext4-combined*.img; do
           [ -f "$img" ] || continue
           vmdk="${img%.img}.vmdk"
-          qemu-img convert -f raw -O vmdk "$img" "$vmdk"
+          qemu-img convert -p -f raw -O vmdk "$img" "$vmdk"
         done
-    
     
     - name: 打包固件
       uses: actions/upload-artifact@main
