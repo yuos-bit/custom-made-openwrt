@@ -58,6 +58,7 @@ sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-21.02|https://githu
 #sed -i 's#github.com/immortalwrt/luci.git;openwrt-21.02#github.com/yuos-bit/other.git;immortalwrt-luci-21.02#' feeds.conf.default
 sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git;master' feeds.conf.default
 sed -i '$a src-git small8 https://github.com/kenzok8/openwrt-packages.git;master' feeds.conf.default
+sed -i '$a src-git small https://github.com/kenzok8/jell.git;main' feeds.conf.default
 
 # 修改默认dnsmasq为dnsmasq-full
 sed -i 's/dnsmasq/dnsmasq-full firewall iptables block-mount coremark kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw kmod-ipt-raw6 kmod-tun/g' include/target.mk
@@ -91,6 +92,7 @@ sed -i '2a ifconfig rai0 up\nifconfig ra0 up\nbrctl addif br-lan rai0\nbrctl add
 git clone -b custom-made-21.02 https://github.com/yuos-bit/other package/default-settings
 git clone -b mipsle-xray https://github.com/yuos-bit/other package/passwall
 git clone -b main https://github.com/yuos-bit/other package/main
+git clone -b debug https://github.com/yuos-bit/luci-theme-edge2 package/luci-theme-edge2
 
 # 测试 tailscale
 git clone -b tailscale https://github.com/yuos-bit/other package/tailscale
