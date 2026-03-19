@@ -48,7 +48,7 @@ cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/image/mt7621.mk $GITHUB_WORKSPACE/openwr
 # cp -rf $GITHUB_WORKSPACE/patchs/5.4/mt76x8/02_network $GITHUB_WORKSPACE/openwrt/target/linux/ramips/mt76x8/base-files/etc/board.d/02_network
 
 #更改软件源
-sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-21.02|https://github.com/immortalwrt/packages.git;openwrt-21.02|' feeds.conf.default
+#sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-21.02|https://github.com/immortalwrt/packages.git;openwrt-21.02|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-21.02|https://github.com/immortalwrt/luci.git;openwrt-21.02|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/routing.git;openwrt-21.02|https://github.com/openwrt/routing.git;openwrt-21.02|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-21.02|https://github.com/openwrt/telephony.git;openwrt-21.02|' feeds.conf.default
