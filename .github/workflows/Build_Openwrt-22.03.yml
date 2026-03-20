@@ -7,7 +7,7 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # Description: Build OpenWrt using GitHub Actions
 
-name: 云编译Openwrt22.03官方固件+插件
+name: 定制Openwrt22.03官方固件+插件
 
 on:
   repository_dispatch:
@@ -16,11 +16,10 @@ on:
       model:
         description: '选择机型'
         required: true
-        default: 'Redmi_AC2100' 
+        default: 'X86' 
         type: choice
         options:
-          - 'Redmi_AC2100'
-          - 'Xiaomi_AC2100'
+          - 'X86'
       UPLOAD_BIN_DIR:
         type: boolean
         description: '上传bin文件夹到Artifacts'
@@ -207,6 +206,19 @@ jobs:
           new_name="$(echo "$file" | sed "s/^openwrt-/${REPO_BRANCH}-/")"
           echo "重命名: $file -> $new_name"
           mv "$file" "$new_name"
+        done
+
+    - name: 转换X86镜像为VMDK
+      if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86' && !cancelled()
+      run: |
+        cd $FIRMWARE
+        for gz in *generic-ext4-combined.img.gz; do
+          [ -f "$gz" ] && gunzip -f "$gz"
+        done
+        for img in *generic-ext4-combined*.img; do
+          [ -f "$img" ] || continue
+          vmdk="${img%.img}.vmdk"
+          qemu-img convert -p -f raw -O vmdk "$img" "$vmdk"
         done
 
     - name: 打包固件
