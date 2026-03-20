@@ -62,7 +62,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: openwrt-22.03
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/22.03/Yuos_${{ github.event.inputs.model }}_22.03.config
+  CONFIG_FILE: config/22.03/Yuos_${{ github.event.inputs.model }}.config
   DIY_P1_SH: openwrt22.03-1.sh
   DIY_P2_SH: openwrt22.03-2.sh
 #  UPLOAD_BIN_DIR: true
