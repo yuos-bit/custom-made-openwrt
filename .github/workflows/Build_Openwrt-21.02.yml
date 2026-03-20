@@ -221,7 +221,6 @@ jobs:
         body_path: release.txt
         files: | 
           ${{ env.FIRMWARE }}/*
-          ${{ runner.workspace }}/logs/*
 
     - name: 设置WebDAV目标目录
       run: |
