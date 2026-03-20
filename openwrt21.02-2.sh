@@ -55,3 +55,8 @@ echo "DISTRIB_DESCRIPTION='yuos Build @ ${BUILD_STRING}'" >> package/base-files/
 # 修改 luci version.lua
 sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
 echo "luciversion = '${BUILD_STRING}'" >> feeds/luci/modules/luci-base/luasrc/version.lua
+
+#升级golang
+rm -rf feeds/packages/lang/golang
+find . -type d -name "golang" -prune -exec rm -rf {} \;
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
