@@ -9,6 +9,8 @@
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #=================================================
+# 删除MMDVM
+./scripts/feeds uninstall {mmdvm,mmdvm-host,p25-clients,ysf-clients,nxdn-clients,mmdvm-luci,dapnet-gateway,ircddb-gateway,libmmdvm,libwxwidgets,mmdvm-cal}
 
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
@@ -46,7 +48,7 @@ sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
 echo "luciversion = '${BUILD_STRING}'" >> feeds/luci/modules/luci-base/luasrc/version.lua
 
 #FullCone Patch
-git clone -b master --single-branch https://github.com/QiuSimons/openwrt-fullconenat package/fullconenat
+git clone -b main --single-branch https://github.com/xinlon-z/openwrt-fullconenat package/fullconenat
 # Patch FireWall for fullcone
 mkdir package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/LGA1150/fullconenat-fw3-patch/master/fullconenat.patch
