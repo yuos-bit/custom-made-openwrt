@@ -1,0 +1,19 @@
+--- a/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
++++ b/feeds/luci/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
+@@ -161,6 +161,10 @@ return view.extend({
+                o.editable = true;
+                o.tooltip = function(section_id) {
+                        var family = uci.get('firewall', section_id, 'family')
+                        var masq_src = uci.get('firewall', section_id, 'masq_src')
+                        var masq_dest = uci.get('firewall', section_id, 'masq_dest')
+                        if ((!family || family.indexOf('6') == -1) && (masq_src || masq_dest))
+@@ -168,6 +172,10 @@ return view.extend({
+                        return null;
+                };
+
++               o = s.taboption('general', form.Flag, 'fullcone', _('Full Cone'));
++               o.editable = true;
++               o.depends('masq', '1');
++
+                o = s.taboption('general', form.Flag, 'mtu_fix', _('MSS clamping'));
+                o.modalonly = true;
