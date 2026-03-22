@@ -47,12 +47,6 @@ echo "DISTRIB_DESCRIPTION='小渔学长 Build @ ${BUILD_STRING}'" >> package/bas
 sed -i '/luciversion/d' feeds/luci/modules/luci-base/luasrc/version.lua
 echo "luciversion = '${BUILD_STRING}'" >> feeds/luci/modules/luci-base/luasrc/version.lua
 
-
-# 全锥形NAT修复
-pushd feeds/luci
-git apply $GITHUB_WORKSPACE/patchs/5.10/luci.patch
-popd
-
 #升级golang
 rm -rf feeds/packages/lang/golang
 find . -type d -name "golang" -prune -exec rm -rf {} \;
