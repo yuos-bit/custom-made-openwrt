@@ -49,10 +49,8 @@ echo "luciversion = '${BUILD_STRING}'" >> feeds/luci/modules/luci-base/luasrc/ve
 
 
 # 全锥形NAT修复
-mkdir package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/fullconenat.patch
 pushd feeds/luci
-wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
+git apply $GITHUB_WORKSPACE/patchs/5.10/luci.patch
 popd
 
 #升级golang

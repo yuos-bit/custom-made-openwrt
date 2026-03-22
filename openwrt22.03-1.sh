@@ -56,3 +56,10 @@ sed -i '2a ifconfig rai0 up\nifconfig ra0 up\nbrctl addif br-lan rai0\nbrctl add
 # 单独拉取软件包
 git clone -b debug https://github.com/yuos-bit/luci-theme-edge2 package/luci-theme-edge2
 git clone -b passwall https://github.com/yuos-bit/other package/passwall
+
+#更新lean防火墙
+rm -rf package/network/config/firewall
+rm -rf package/network/config/firewall4
+find . -type d \( -name "firewall4" -o -name "firewall" \) -prune -exec rm -rf {} \;
+cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall $GITHUB_WORKSPACE/openwrt/package/network/config/firewall
+cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall4 $GITHUB_WORKSPACE/openwrt/package/network/config/firewall4
