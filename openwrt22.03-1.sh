@@ -11,7 +11,7 @@
 
 #更改软件源
 #sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-21.02|https://github.com/immortalwrt/packages.git;openwrt-21.02|' feeds.conf.default
-sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-22.03|https://github.com/coolsnowwolf/luci.git;openwrt-23.05;openwrt-23.05|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-22.03|https://github.com/coolsnowwolf/luci.git;openwrt-23.05;|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/routing.git;openwrt-22.03|https://github.com/openwrt/routing.git;openwrt-22.03|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-22.03|https://github.com/openwrt/telephony.git;openwrt-22.03|' feeds.conf.default
 
