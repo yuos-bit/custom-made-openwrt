@@ -212,6 +212,8 @@ jobs:
       if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86' && !cancelled()
       run: |
         cd $FIRMWARE
+        ls -a
+        ls /bin/targets/*/*/
         echo "📋 解压前的img文件列表："
         ls -la *generic-ext4-combined*.img 2>/dev/null || echo "  暂无普通img文件"
         
