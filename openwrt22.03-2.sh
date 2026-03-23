@@ -10,8 +10,6 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #=================================================
 # 删除MMDVM
-./scripts/feeds uninstall {mmdvm,mmdvm-host,p25-clients,ysf-clients,nxdn-clients,mmdvm-luci,dapnet-gateway,ircddb-gateway,libmmdvm,libwxwidgets,mmdvm-cal}
-
 # Add kernel build user
 [ -z $(grep "CONFIG_KERNEL_BUILD_USER=" .config) ] &&
     echo 'CONFIG_KERNEL_BUILD_USER="MOLUN"' >>.config ||
@@ -56,5 +54,7 @@ find . -type d -name "golang" -prune -exec rm -rf {} \;
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 #增加ucode-mod-digest插件
-cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils $GITHUB_WORKSPACE/openwrt/feeds/packages/utils
+cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/feeds/packages/utils/
 ./scripts/feeds install -a
+
+./scripts/feeds uninstall {mmdvm,mmdvm-host,p25-clients,ysf-clients,nxdn-clients,mmdvm-luci,dapnet-gateway,ircddb-gateway,libmmdvm,libwxwidgets,mmdvm-cal}
