@@ -57,3 +57,4 @@ git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/l
 
 #增加ucode-mod-digest插件
 cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils $GITHUB_WORKSPACE/openwrt/feeds/packages/utils
+./scripts/feeds install -a
