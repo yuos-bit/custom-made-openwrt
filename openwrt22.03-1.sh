@@ -19,8 +19,9 @@ sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-22.03|https://githu
 #sed -i 's#github.com/immortalwrt/packages.git;openwrt-21.02#github.com/yuos-bit/other.git;immortalwrt-packages-21.02#' feeds.conf.default
 #sed -i 's#github.com/immortalwrt/luci.git;openwrt-21.02#github.com/yuos-bit/other.git;immortalwrt-luci-21.02#' feeds.conf.default
 sed -i '$a src-git helloworld https://github.com/fw876/helloworld.git;master' feeds.conf.default
-sed -i '$a src-git small8 https://github.com/kenzok8/openwrt-packages.git;master' feeds.conf.default
-sed -i '$a src-git small https://github.com/kenzok8/jell.git;main' feeds.conf.default
+sed -i '$a src-git small8 https://github.com/kenzok8/jell.git;main' feeds.conf.default
+sed -i '$a src-git small https://github.com/kenzok8/small.git;master' feeds.conf.default
+
 
 # 修改默认第一排插件
 sed -i 's/dnsmasq/dnsmasq-full/g' include/target.mk
