@@ -212,37 +212,12 @@ jobs:
       if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86' && !cancelled()
       run: |
         cd $FIRMWARE
-        ls -a
-        ls /bin/targets/*/*/
-        echo "📋 解压前的img文件列表："
-        ls -la *generic-ext4-combined*.img 2>/dev/null || echo "  暂无普通img文件"
-        
-        for gz in *generic-ext4-combined-efi.img.gz; do
-          [ -f "$gz" ] || continue
-          echo -e "\n🔓 解压 EFI 镜像: $gz"
-          gunzip -f "$gz" || echo "⚠️ 忽略 $gz 的 gzip 尾部异常"
+        for gz in *ext4-combined-efi.img.gz *ext4-combined.img.gz; do
+          [ -f "$gz" ] && gunzip -kf "$gz"
         done
-        
-        echo -e "\n📋 解压后的img文件列表："
-        ls -la *generic-ext4-combined*.img 2>/dev/null || echo "  暂无任何img文件"
-        
-        echo -e "\n⚙️ 开始转换镜像为VMDK："
-        find . -maxdepth 1 -type f -name "*generic-ext4-combined*.img" | while read -r img; do
-          img=$(basename "$img")
-          vmdk="${img%.img}.vmdk"
-          echo "  转换: $img -> $vmdk"
-          qemu-img convert -p -f raw -O vmdk "$img" "$vmdk"
+        for i in *ext4-combined-efi.img *ext4-combined.img; do
+          [ -f "$i" ] && qemu-img convert -f raw -O vmdk "$i" "${i%.img}.vmdk"
         done
-        
-        echo -e "\n✅ 转换完成，VMDK文件列表："
-        ls -la *generic-ext4-combined*.vmdk 2>/dev/null || echo "  未生成任何VMDK文件"
-
-    - name: 打包固件
-      uses: actions/upload-artifact@main
-      if: steps.organize.outputs.status == 'success' && github.event.inputs.UPLOAD_FIRMWARE == 'true' && !cancelled()
-      with:
-        name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: ${{ env.FIRMWARE }}
 
     - name: 创建标签
       id: tag

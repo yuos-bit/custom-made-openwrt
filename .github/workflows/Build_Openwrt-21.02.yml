@@ -187,13 +187,11 @@ jobs:
       if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86' && !cancelled()
       run: |
         cd $FIRMWARE
-        for gz in *generic-ext4-combined.img.gz; do
-          [ -f "$gz" ] && gunzip -f "$gz"
+        for gz in *ext4-combined-efi.img.gz *ext4-combined.img.gz; do
+          [ -f "$gz" ] && gunzip -kf "$gz"
         done
-        for img in *generic-ext4-combined*.img; do
-          [ -f "$img" ] || continue
-          vmdk="${img%.img}.vmdk"
-          qemu-img convert -p -f raw -O vmdk "$img" "$vmdk"
+        for i in *ext4-combined-efi.img *ext4-combined.img; do
+          [ -f "$i" ] && qemu-img convert -f raw -O vmdk "$i" "${i%.img}.vmdk"
         done
     
     - name: 打包固件
