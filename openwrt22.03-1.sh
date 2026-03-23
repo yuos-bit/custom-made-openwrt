@@ -11,7 +11,7 @@
 
 #更改软件源
 #sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-21.02|https://github.com/immortalwrt/packages.git;openwrt-21.02|' feeds.conf.default
-sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-22.03|https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-22.03|https://github.com/openwrt/luci.git;openwrt-22.03|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/routing.git;openwrt-22.03|https://github.com/openwrt/routing.git;openwrt-22.03|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-22.03|https://github.com/openwrt/telephony.git;openwrt-22.03|' feeds.conf.default
 
@@ -26,7 +26,7 @@ sed -i '$a src-git small https://github.com/kenzok8/jell.git;main' feeds.conf.de
 sed -i 's/dnsmasq/dnsmasq-full/g' include/target.mk
 
 # # 修改默认第二排插件
-sed -i 's/firewall4/firewall block-mount coremark kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw kmod-tun/g' include/target.mk
+sed -i 's/firewall4/firewall4 block-mount coremark kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw kmod-tun/g' include/target.mk
 
 # # 修改默认第三排插件
 sed -i 's/nftables/nftables iptables-mod-tproxy/g' include/target.mk
