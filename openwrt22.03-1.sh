@@ -64,3 +64,6 @@ rm -rf package/network/config/firewall4
 find . -type d \( -name "firewall4" -o -name "firewall" \) -prune -exec rm -rf {} \;
 cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall $GITHUB_WORKSPACE/openwrt/package/network/config/firewall
 cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall4 $GITHUB_WORKSPACE/openwrt/package/network/config/firewall4
+
+#增加ucode-mod-digest插件
+cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils $GITHUB_WORKSPACE/openwrt/package/utils
