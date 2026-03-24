@@ -10,9 +10,9 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 
 #更改软件源
-sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-23.05|https://github.com/coolsnowwolf/packages.git;master|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-23.05|https://github.com/immortalwrt/packages.git;openwrt-23.05|' feeds.conf.default
 #sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-23.05|https://github.com/openwrt/luci.git;openwrt-23.05|' feeds.conf.default
-sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-23.05|https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-23.05|https://github.com/immortalwrt/luci.git;openwrt-23.05|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/routing.git;openwrt-23.05|https://github.com/openwrt/routing.git;openwrt-23.05|' feeds.conf.default
 sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-23.05|https://github.com/openwrt/telephony.git;openwrt-23.05|' feeds.conf.default
 
