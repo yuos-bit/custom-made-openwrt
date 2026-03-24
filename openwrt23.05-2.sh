@@ -31,7 +31,7 @@
 #echo 'WNMEnable=1' >> package/kernel/mt-drivers/mt_wifi/files/mt7615.1.5G.dat
 
 # 测试编译时间
-YUOS_DATE="$(date +%Y.%m.%d)(openwrt-22.03开发版)"
+YUOS_DATE="$(date +%Y.%m.%d)(openwrt-23.05开发版)"
 BUILD_STRING=${BUILD_STRING:-$YUOS_DATE}
 echo "Write build date in openwrt : $BUILD_DATE"
 echo -e '\n 小渔学长 Build @ '${BUILD_STRING}'\n'  >> package/base-files/files/etc/banner

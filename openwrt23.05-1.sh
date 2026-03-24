@@ -10,11 +10,11 @@
 # Description: OpenWrt DIY script part 1 (Before Update feeds)
 
 #更改软件源
-sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-22.03|https://github.com/coolsnowwolf/packages.git;master|' feeds.conf.default
-#sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-22.03|https://github.com/openwrt/luci.git;openwrt-22.03|' feeds.conf.default
-sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-22.03|https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
-sed -i 's|https://git.openwrt.org/feed/routing.git;openwrt-22.03|https://github.com/openwrt/routing.git;openwrt-22.03|' feeds.conf.default
-sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-22.03|https://github.com/openwrt/telephony.git;openwrt-22.03|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/feed/packages.git;openwrt-23.05|https://github.com/coolsnowwolf/packages.git;master|' feeds.conf.default
+#sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-23.05|https://github.com/openwrt/luci.git;openwrt-23.05|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/project/luci.git;openwrt-23.05|https://github.com/coolsnowwolf/luci.git;openwrt-23.05|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/feed/routing.git;openwrt-23.05|https://github.com/openwrt/routing.git;openwrt-23.05|' feeds.conf.default
+sed -i 's|https://git.openwrt.org/feed/telephony.git;openwrt-23.05|https://github.com/openwrt/telephony.git;openwrt-23.05|' feeds.conf.default
 
 # 增加软件包
 #sed -i 's#github.com/immortalwrt/packages.git;openwrt-21.02#github.com/yuos-bit/other.git;immortalwrt-packages-21.02#' feeds.conf.default
@@ -67,5 +67,5 @@ cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall $GITHUB_WORKSPACE/openwrt/package/
 cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall4 $GITHUB_WORKSPACE/openwrt/package/network/config/firewall4
 
 #增加ucode-mod-digest libmd插件
-cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/package/utils/
-cp -rf $GITHUB_WORKSPACE/patchs/5.10/libs/* $GITHUB_WORKSPACE/openwrt/package/libs/
+# cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/package/utils/
+# cp -rf $GITHUB_WORKSPACE/patchs/5.10/libs/* $GITHUB_WORKSPACE/openwrt/package/libs/
