@@ -207,19 +207,22 @@ jobs:
           echo "重命名: $file -> $new_name"
           mv "$file" "$new_name"
         done
-
+    
     - name: 转换X86镜像为VMDK
       if: steps.organize.outputs.status == 'success' && github.event.inputs.model == 'X86' && !cancelled()
       run: |
         cd $FIRMWARE
         for gz in *ext4-combined-efi.img.gz *ext4-combined.img.gz; do
           if [ -f "$gz" ]; then
-            gunzip -kf "$gz" || true
+            echo "✅ 解压：$gz"
+            gunzip -kf "$gz" 2>/dev/null || true
           fi
         done
         for i in *ext4-combined-efi.img *ext4-combined.img; do
           if [ -f "$i" ]; then
-            qemu-img convert -f raw -O vmdk "$i" "${i%.img}.vmdk"
+            vmdk="${i%.img}.vmdk"
+            echo "✅ 转换：$i → $vmdk"
+            qemu-img convert -f raw -O vmdk "$i" "$vmdk" 2>/dev/null
           fi
         done
 
