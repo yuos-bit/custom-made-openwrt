@@ -150,8 +150,9 @@ jobs:
 
     - name: 集成 FULLCONE 官方工具链与内核校验
       run: |
-        cd openwrt
+        [ -e files ] && mv files openwrt/files
         chmod +x $DIY_P3_SH
+        cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH ${{ github.event.inputs.model == 'X86' && 'x86/64' || 'ramips/mt7621' }}
 
     - name: SSH 链接工作流
