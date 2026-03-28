@@ -69,3 +69,11 @@ cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall4 $GITHUB_WORKSPACE/openwrt/package
 #增加ucode-mod-digest libmd插件
 # cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/package/utils/
 # cp -rf $GITHUB_WORKSPACE/patchs/5.10/libs/* $GITHUB_WORKSPACE/openwrt/package/libs/
+
+
+wget -O fullcone.patch https://raw.githubusercontent.com/ysc3839/openwrt-official-builds-fullcone/refs/heads/main/openwrt-22.03.2-fullcone.patch
+git apply fullcone.patch || echo "Patch already applied"
+
+wget -O luci-fullcone.patch https://raw.githubusercontent.com/ysc3839/openwrt-official-builds-fullcone/refs/heads/main/luci-app-firewall-fullcone.patch
+cp luci-fullcone.patch ../
+

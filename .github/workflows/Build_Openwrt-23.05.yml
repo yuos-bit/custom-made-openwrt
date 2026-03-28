@@ -147,6 +147,12 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
+    - name: 集成 FULLCONE 官方工具链与内核校验
+      run: |
+        cd openwrt
+        chmod +x ../fullcone-build.sh
+        ../fullcone-build.sh ${{ github.event.inputs.model == 'X86' && 'x86/64' || 'ramips/mt7621' }}
+
     - name: SSH 链接工作流
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
