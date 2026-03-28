@@ -65,6 +65,7 @@ env:
   CONFIG_FILE: config/23.05/Yuos_${{ github.event.inputs.model }}.config
   DIY_P1_SH: openwrt23.05-1.sh
   DIY_P2_SH: openwrt23.05-2.sh
+  DIY_P3_SH: fullcone-build.sh
 #  UPLOAD_BIN_DIR: true
 #  UPLOAD_FIRMWARE: true
 #  UPLOAD_COWTRANSFER: false
@@ -150,8 +151,8 @@ jobs:
     - name: 集成 FULLCONE 官方工具链与内核校验
       run: |
         cd openwrt
-        chmod +x ../fullcone-build.sh
-        ../fullcone-build.sh ${{ github.event.inputs.model == 'X86' && 'x86/64' || 'ramips/mt7621' }}
+        chmod +x $DIY_P3_SH
+        $GITHUB_WORKSPACE/$DIY_P2_SH ${{ github.event.inputs.model == 'X86' && 'x86/64' || 'ramips/mt7621' }}
 
     - name: SSH 链接工作流
       uses: P3TERX/ssh2actions@v1.0.0
