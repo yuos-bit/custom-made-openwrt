@@ -67,5 +67,5 @@ git clone -b passwall https://github.com/yuos-bit/other package/passwall
 # cp -rf $GITHUB_WORKSPACE/patchs/5.10/firewall4 $GITHUB_WORKSPACE/openwrt/package/network/config/firewall4
 
 #增加ucode-mod-digest libmd插件
-# cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/package/utils/
-# cp -rf $GITHUB_WORKSPACE/patchs/5.10/libs/* $GITHUB_WORKSPACE/openwrt/package/libs/
+cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/package/utils/
+cp -rf $GITHUB_WORKSPACE/patchs/5.10/libs/* $GITHUB_WORKSPACE/openwrt/package/libs/
