@@ -55,6 +55,6 @@ git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/l
 #增加ucode-mod-digest libmd插件
 # cp -rf $GITHUB_WORKSPACE/patchs/5.10/utils/* $GITHUB_WORKSPACE/openwrt/feeds/packages/utils/
 # cp -rf $GITHUB_WORKSPACE/patchs/5.10/libs/* $GITHUB_WORKSPACE/openwrt/feeds/packages/libs/
-./scripts/feeds update -a
-./scripts/feeds install -a libnftnl nftables nft-fullcone firewall4 luci-app-firewall
+# ./scripts/feeds update -a
+# ./scripts/feeds install -a libnftnl nftables nft-fullcone firewall4 luci-app-firewall
 ./scripts/feeds uninstall {mmdvm,mmdvm-host,p25-clients,ysf-clients,nxdn-clients,mmdvm-luci,dapnet-gateway,ircddb-gateway,libmmdvm,libwxwidgets,mmdvm-cal}
