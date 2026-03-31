@@ -52,7 +52,5 @@ rm -rf feeds/packages/lang/golang
 find . -type d -name "golang" -prune -exec rm -rf {} \;
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
-# 赋予mihomo权限
-chmod +x -R $GITHUB_WORKSPACE/openwrt/package/passwall/
 #删除电台配置插件
 ./scripts/feeds uninstall {mmdvm,mmdvm-host,p25-clients,ysf-clients,nxdn-clients,mmdvm-luci,dapnet-gateway,ircddb-gateway,libmmdvm,libwxwidgets,mmdvm-cal}
