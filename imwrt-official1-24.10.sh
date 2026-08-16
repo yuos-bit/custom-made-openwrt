@@ -25,7 +25,7 @@ sed -i 's/ppp-mod-pppoe/iptables-mod-tproxy iptables-mod-extra ipset ip-full ppp
 # sed -i 's/ +libopenssl-legacy//g' feeds/small/shadowsocksr-libev/Makefile
 
 # 单独拉取软件包
-# git clone -b default-imwrt-official https://github.com/yuos-bit/other package/default-settings
+git clone -b custom-made-24.10 https://github.com/yuos-bit/other package/default-settings
 
 # 更改默认wifi
 # cp -rf $GITHUB_WORKSPACE/patchs/NX30Pro/mtwifi.sh package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
