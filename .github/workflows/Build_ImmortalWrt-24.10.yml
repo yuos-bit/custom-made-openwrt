@@ -16,11 +16,9 @@ on:
       model:
         description: '选择机型'
         required: true
-        default: 'X86' 
+        default: 'zte-e8820s' 
         type: choice
         options:
-          - 'X86'
-          - 'rpi-4b'
           - 'zte-e8820s'
       UPLOAD_BIN_DIR:
         type: boolean
