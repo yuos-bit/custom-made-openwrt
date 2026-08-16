@@ -39,6 +39,7 @@
 # MT7621
 # cp -rf $GITHUB_WORKSPACE/patchs/xiaomi_mi-router/mt7621_xiaomi_mi-router-4a-gigabit.dts $GITHUB_WORKSPACE/openwrt/target/linux/ramips/dts/mt7621_xiaomi_mi-router-4a-gigabit.dts
 cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/dts/mt7621_zte_e8820v2.dts $GITHUB_WORKSPACE/openwrt/target/linux/ramips/dts/mt7621_zte_e8820v2.dts
+cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/dts/mt7621_zte_e8820s.dts $GITHUB_WORKSPACE/openwrt/target/linux/ramips/dts/mt7621_zte_e8820s.dts
 cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/board.d/01_leds $GITHUB_WORKSPACE/openwrt/target/linux/ramips/mt7621/base-files/etc/board.d/01_leds
 cp -rf $GITHUB_WORKSPACE/patchs/5.4/ZTE/image/mt7621.mk $GITHUB_WORKSPACE/openwrt/target/linux/ramips/image/mt7621.mk
 
@@ -95,7 +96,7 @@ git clone -b main https://github.com/yuos-bit/other package/main
 git clone -b debug https://github.com/yuos-bit/luci-theme-edge2 package/luci-theme-edge2
 
 # 测试 tailscale
-git clone -b tailscale https://github.com/yuos-bit/other package/tailscale
+# git clone -b tailscale https://github.com/yuos-bit/other package/tailscale
 
 # 更新openssl3.0
 
