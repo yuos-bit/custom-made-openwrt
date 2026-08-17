@@ -20,6 +20,7 @@ on:
         type: choice
         options:
           - 'zte-e8820s'
+          - 'X86'
       UPLOAD_BIN_DIR:
         type: boolean
         description: '上传bin文件夹到Artifacts'
