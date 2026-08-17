@@ -11,10 +11,10 @@
 #=================================================
 
 # Modify default IP 修改openwrt登陆地址,把下面的192.168.3.1修改成你想要的就可以了
-sed -i 's/192.168.1.1/10.32.0.1/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.1.1/10.32.0.1/g' package/base-files/files/bin/config_generate
 
 # 修改网关
-sed -i 's/192.168.$((addr_offset++)).1/10.32.$((addr_offset++)).1/g' package/base-files/files/bin/config_generate
+#sed -i 's/192.168.$((addr_offset++)).1/10.32.$((addr_offset++)).1/g' package/base-files/files/bin/config_generate
 
 # 修改默认wifi名称ssid为Xiaomi-Wifi
 # p -rf $GITHUB_WORKSPACE/patchs/xiaomi_mi-router/mt76x8/mac80211.sh package/kernel/mac80211/files/lib/wifi/mac80211.sh
