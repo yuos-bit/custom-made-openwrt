@@ -100,17 +100,18 @@ git clone -b debug https://github.com/yuos-bit/luci-theme-edge2 package/luci-the
 
 # 更新openssl3.0
 
-#超频 
-# #0x362=1100MHz
-# #0x312=1000MHz
-# #0x3B2=1200MHz
-grep "rt_memc_w32(pll,MEMC_REG_CPU_PLL);" ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-if [ $? -ne 0 ]; then
-echo fix over clock
-sed -i 's/-111,49 +111,89/-111,49 +111,93/' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-sed -i 's/u32 xtal_clk, cpu_clk, bus_clk;/u32 xtal_clk, cpu_clk, bus_clk,i;/' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-sed -i '157i+		pll &= ~(0x7ff);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-sed -i '158i+		pll |=  (0x362);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-sed -i '159i+		rt_memc_w32(pll,MEMC_REG_CPU_PLL);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-sed -i '160i+		for(i=0;i<1024;i++);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
-fi
+#超频
+# #0x2B2=880MHz(原频) #0x312=1000MHz #0x362=1100MHz #0x3B2=1200MHz
+# 注意：0x648(MEMPLL18)只控制CPU时钟，内存时钟由独立的MEMPLL6(0x618)提供，
+#       在uboot阶段初始化训练，内核中无法(也不应)修改。
+# grep "rt_memc_w32(pll,MEMC_REG_CPU_PLL);" ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# if [ $? -ne 0 ]; then
+# echo fix over clock
+# sed -i 's/-111,49 +111,89/-111,49 +111,93/' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# sed -i 's/u32 xtal_clk, cpu_clk, bus_clk;/u32 xtal_clk, cpu_clk, bus_clk,i;/' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# sed -i '157i+		pll &= ~(0x7ff);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# sed -i '158i+		pll |=  (0x362);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# sed -i '159i+		rt_memc_w32(pll,MEMC_REG_CPU_PLL);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# 延时不能用空for循环(i未被使用会被gcc -O2整体优化掉)，必须用内联汇编nop等待PLL锁定
+# sed -i '160i+		for(i=0;i<10000000;i++) __asm__ __volatile__("nop");' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
+# fi
